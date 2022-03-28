@@ -1,5 +1,5 @@
 .idea/
 node_modules
 dist
-example/
+# example/
 .DS_Store
