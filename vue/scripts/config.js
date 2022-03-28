@@ -8,6 +8,8 @@ const flow = require('rollup-plugin-flow-no-whitespace')
 const version = process.env.VERSION || require('../package.json').version
 const weexVersion = process.env.WEEX_VERSION || require('../packages/weex-vue-framework/package.json').version
 
+
+
 const banner =
   '/*!\n' +
   ' * Vue.js v' + version + '\n' +
@@ -82,7 +84,8 @@ const builds = {
     env: 'production',
     banner
   },
-  // Runtime+compiler development build (Browser)
+  // Runtime+compiler development build (Browser) 开发的版本在这里  对应的入口配置
+  //  这里的web 
   'web-full-dev': {
     entry: resolve('web/entry-runtime-with-compiler.js'),
     dest: resolve('dist/vue.js'),
@@ -170,6 +173,7 @@ const builds = {
 
 function genConfig (name) {
   const opts = builds[name]
+  // 组装成roullp 的配置进组装映射
   const config = {
     input: opts.entry,
     external: opts.external,
@@ -205,7 +209,11 @@ function genConfig (name) {
   return config
 }
 
+/**
+ * 入口配置文件在platforms里面，主要分为web和weex两个场景组成
+ */
 if (process.env.TARGET) {
+  // 返回真正的config数据   和TARGET有关
   module.exports = genConfig(process.env.TARGET)
 } else {
   exports.getBuild = genConfig

@@ -36,6 +36,7 @@ const sharedPropertyDefinition = {
 }
 
 export function proxy (target: Object, sourceKey: string, key: string) {
+  // 替换掉sharedPropertyDefinition 的getdet方法， 只对当前的数据做代理，没有往内部去遍历/*  */
   sharedPropertyDefinition.get = function proxyGetter () {
     return this[sourceKey][key]
   }
@@ -45,6 +46,11 @@ export function proxy (target: Object, sourceKey: string, key: string) {
   Object.defineProperty(target, key, sharedPropertyDefinition)
 }
 
+
+/**
+ * 这里应该是对实例处理
+ * @param {Component} vm 
+ */
 export function initState (vm: Component) {
   vm._watchers = []
   const opts = vm.$options

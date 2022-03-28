@@ -159,6 +159,8 @@ export function mountComponent (
   }
   callHook(vm, 'beforeMount')
 
+
+  // 真实的更新场景
   let updateComponent
   /* istanbul ignore if */
   if (process.env.NODE_ENV !== 'production' && config.performance && mark) {
@@ -183,7 +185,7 @@ export function mountComponent (
       vm._update(vm._render(), hydrating)
     }
   }
-
+  //  ***** 非常重要的***** 渲染watch
   // we set this to vm._watcher inside the watcher's constructor
   // since the watcher's initial patch may call $forceUpdate (e.g. inside child
   // component's mounted hook), which relies on vm._watcher being already defined

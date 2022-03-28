@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/ustbhuangyi/vue-analysis#readme",
   "devDependencies": {
+    "flow-bin": "^0.172.0",
     "vuepress": "^1.2.0"
   }
 }

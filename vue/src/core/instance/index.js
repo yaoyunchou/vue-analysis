@@ -5,6 +5,7 @@ import { eventsMixin } from './events'
 import { lifecycleMixin } from './lifecycle'
 import { warn } from '../util/index'
 
+// 需要用new来进行对应的初始化操作
 function Vue (options) {
   if (process.env.NODE_ENV !== 'production' &&
     !(this instanceof Vue)
@@ -13,8 +14,12 @@ function Vue (options) {
   }
   this._init(options)
 }
-
+// inti 初始化  内部有_init的初始化方法
 initMixin(Vue)
+
+/**
+ * 对实例进初始化
+ */
 stateMixin(Vue)
 eventsMixin(Vue)
 lifecycleMixin(Vue)
