@@ -5023,7 +5023,7 @@ var KeepAlive = {
           pruneCacheEntry(cache, keys[0], keys, this._vnode);
         }
       }
-
+      debugger
       vnode.data.keepAlive = true;
     }
     return vnode || (slot && slot[0])
@@ -5612,8 +5612,10 @@ function createPatchFunction (backend) {
 
   function createComponent (vnode, insertedVnodeQueue, parentElm, refElm) {
     var i = vnode.data;
+    debugger
     if (isDef(i)) {
       var isReactivated = isDef(vnode.componentInstance) && i.keepAlive;
+      // 这里别被迷惑， 这里的运行是 i= i.hook isDef(i) i = i.init   isDef(i)   最后的i应该是对应 原始的i.hook.init
       if (isDef(i = i.hook) && isDef(i = i.init)) {
         i(vnode, false /* hydrating */);
       }

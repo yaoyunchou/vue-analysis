@@ -207,8 +207,9 @@ export function createPatchFunction (backend) {
     }
   }
 
-  function createComponent (vnode, insertedVnodeQueue, parentElm, refElm) {
+  function createComponent (vnode, insertedVnodeQueue, parentElm, refElm) { // path 多关注下
     let i = vnode.data
+    debugger
     if (isDef(i)) {
       const isReactivated = isDef(vnode.componentInstance) && i.keepAlive
       if (isDef(i = i.hook) && isDef(i = i.init)) {

@@ -116,7 +116,7 @@ export default {
           pruneCacheEntry(cache, keys[0], keys, this._vnode)
         }
       }
-
+      debugger
       vnode.data.keepAlive = true
     }
     return vnode || (slot && slot[0])
