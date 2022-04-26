@@ -2796,6 +2796,7 @@ function mountComponent (
   // mounted is called for render-created child components in its inserted hook
   if (vm.$vnode == null) {
     vm._isMounted = true;
+    console.log('=====mounted')
     callHook(vm, 'mounted');
   }
   return vm
@@ -2909,6 +2910,7 @@ function deactivateChildComponent (vm, direct) {
 }
 
 function callHook (vm, hook) {
+  debuggerd
   // #7573 disable dep collection when invoking lifecycle hooks
   pushTarget();
   var handlers = vm.$options[hook];
@@ -4164,6 +4166,7 @@ var componentVNodeHooks = {
     var componentInstance = vnode.componentInstance;
     if (!componentInstance._isMounted) {
       componentInstance._isMounted = true;
+      console.log('vm mounted')
       callHook(componentInstance, 'mounted');
     }
     if (vnode.data.keepAlive) {
@@ -4201,6 +4204,7 @@ function createComponent (
   children,
   tag
 ) {
+  debugger
   if (isUndef(Ctor)) {
     return
   }
@@ -4635,6 +4639,7 @@ function initMixin (Vue) {
     initLifecycle(vm);
     initEvents(vm);
     initRender(vm);
+    console.log('beforeCreate')
     callHook(vm, 'beforeCreate');
     initInjections(vm); // resolve injections before data/props
     initState(vm);
@@ -5615,7 +5620,7 @@ function createPatchFunction (backend) {
     debugger
     if (isDef(i)) {
       var isReactivated = isDef(vnode.componentInstance) && i.keepAlive;
-      // 这里别被迷惑， 这里的运行是 i= i.hook isDef(i) i = i.init   isDef(i)   最后的i应该是对应 原始的i.hook.init
+      // 这里别被迷惑， 这里的运行是 i= i.hook isDef(i) i = i.init   isDef(i)   最后的i应该是对应 原始的i.hook.init   
       if (isDef(i = i.hook) && isDef(i = i.init)) {
         i(vnode, false /* hydrating */);
       }

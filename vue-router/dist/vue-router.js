@@ -84,6 +84,7 @@ var View = {
     // this will be called in the instance's injected lifecycle hooks
     data.registerRouteInstance = function (vm, val) {
       // val could be undefined for unregistration
+      debugger
       var current = matched.instances[name];
       if (
         (val && current !== vm) ||
@@ -537,7 +538,7 @@ function install (Vue) {
       i(vm, callVal);
     }
   };
-
+  debugger
   Vue.mixin({
     beforeCreate: function beforeCreate () {
       if (isDef(this.$options.router)) {
